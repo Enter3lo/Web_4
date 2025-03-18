@@ -23,8 +23,12 @@ class User(SqlALchemyBase):
     jobs = orm.relationship('Jobs', back_populates='user')
 
     def __repr__(self):
+        #Запрос 1
         #return (f"{self.id}, {self.surname}, {self.name}, "
         #        f"{self.age}, {self.position}, {self.speciality}, "
         #        f"{self.address}, {self.email}, "
         #        f"{self.hashed_password}, {self.modified_date}")
-        return f'<colonist> {self.id} {self.surname} {self.name}'
+        #Запрос 2
+        #return f'<colonist> {self.id} {self.surname} {self.name}'
+        #Запрос 3
+        return f'<colonist> {self.id} {self.surname} {self.name} {self.age} years'
