@@ -1,6 +1,7 @@
 from flask import Flask
 from data import db_session
 from data.users import User
+from data.jobs import Job
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Enter_zlo'
@@ -18,19 +19,22 @@ def main():
     user.email = 'marsRulit3123@email.com'
     user.hashed_password = '123456788'
 
-    user.surname = 'Скот'
-    user.name = 'Ридлер'
-    user.age = 21
-    user.position = 'Капитан'
-    user.speciality = 'Инженер'
-    user.address = 'Первый модуль'
-    user.email = 'marsR3123@email.com'
-    user.hashed_password = '123456788'
+    capitan = User()
+    capitan.surname = 'Скот'
+    capitan.name = 'Ридлер'
+    capitan.age = 21
+    capitan.position = 'Капитан'
+    capitan.speciality = 'Инженер'
+    capitan.address = 'Первый модуль'
+    capitan.email = 'marsR3123@email.com'
+    capitan.hashed_password = '123456788'
     db_sess = db_session.create_session()
-    db_sess.add(user)
+    db_sess.add(capitan)
     db_sess.commit()
     for user in db_sess.query(User).all():
         print(user)
+
+
 
     #app.run()
 
