@@ -6,7 +6,7 @@ from sqlalchemy import orm
 from data.db_session import SqlALchemyBase
 
 
-class Job(SqlALchemyBase):
+class Jobs(SqlALchemyBase):
     __tablename__ = 'jobs'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
