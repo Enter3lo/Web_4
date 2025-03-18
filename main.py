@@ -1,3 +1,5 @@
+import datetime
+
 from flask import Flask
 from data import db_session
 from data.users import User
@@ -18,6 +20,8 @@ def main():
     user.address = 'Город Краторово Левой области Марса Ул. Карл Маркса'
     user.email = 'marsRulit3123@email.com'
     user.hashed_password = '123456788'
+    db_sess = db_session.create_session()
+    db_sess.add(user)
 
     capitan = User()
     capitan.surname = 'Скот'
@@ -28,18 +32,18 @@ def main():
     capitan.address = 'Первый модуль'
     email = 'marsR3123@email.com'
     user.hashed_password = '123456788'
-    db_sess = db_session.create_session()
-    db_sess.add(user)
+    db_sess.add(capitan)
     db_sess.commit()
     for user in db_sess.query(User).all():
         print(user)
 
     work = Jobs()
-    work.team_leader = db_sess.query(User).filter(User.speciality == 'Капитан').first()
+    work.team_leader = db_sess.query(User.id).filter(User.position == 'Капитан').first()[0]
     work.job = 'Работаю за гроши и всем доволен'
     work.work_size = 8
     work.collaboration = '1, 2, 5'
-    work.end_date = '31.04.2025'
+    end_date_str = '30.04.2025'
+    work.end_date = datetime.datetime.strptime(end_date_str, '%d.%m.%Y')
     work.is_finished = False
     db_sess.add(work)
     db_sess.commit()
