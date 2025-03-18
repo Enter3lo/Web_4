@@ -18,8 +18,6 @@ def main():
     user.address = 'Город Краторово Левой области Марса Ул. Карл Маркса'
     user.email = 'marsRulit3123@email.com'
     user.hashed_password = '123456788'
-    db_sess = db_session.create_session()
-    db_sess.add(user)
 
     capitan = User()
     capitan.surname = 'Скот'
@@ -28,14 +26,25 @@ def main():
     capitan.position = 'Капитан'
     capitan.speciality = 'Инженер'
     capitan.address = 'Первый модуль'
-    capitan.email = 'marsR3123@email.com'
-    capitan.hashed_password = '123456788'
-    db_sess.add(capitan)
+    email = 'marsR3123@email.com'
+    user.hashed_password = '123456788'
+    db_sess = db_session.create_session()
+    db_sess.add(user)
     db_sess.commit()
     for user in db_sess.query(User).all():
         print(user)
 
-
+    work = Jobs()
+    work.team_leader = db_sess.query(User).filter(User.speciality == 'Капитан').first()
+    work.job = 'Работаю за гроши и всем доволен'
+    work.work_size = 8
+    work.collaboration = '1, 2, 5'
+    work.end_date = '31.04.2025'
+    work.is_finished = False
+    db_sess.add(work)
+    db_sess.commit()
+    for work in db_sess.query(Jobs).all():
+        print(work)
 
     #app.run()
 
