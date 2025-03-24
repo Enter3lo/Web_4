@@ -31,4 +31,6 @@ class User(SqlALchemyBase):
         #Запрос 2
         #return f'<colonist> {self.id} {self.surname} {self.name}'
         #Запрос 3
-        return f'<colonist> {self.id} {self.surname} {self.name} {self.age} years'
+        #return f'<colonist> {self.id} {self.surname} {self.name} {self.age} years'
+        #запрос 4
+        return f'<colonist> {self.id} {self.surname} {self.name} {self.position}'
