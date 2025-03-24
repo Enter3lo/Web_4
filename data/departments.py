@@ -12,7 +12,7 @@ class Department(SqlALchemyBase):
     members = sqlalchemy.Column(sqlalchemy.String, nullable=True)  # Список id's
     email = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
-    user = orm.relationship('User ', back_populates='departments')
+    user_department = orm.relationship('User', back_populates='department')
 
     def __repr__(self):
         return f"<Department> {self.title} {self.chief} {self.email}"

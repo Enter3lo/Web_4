@@ -21,6 +21,7 @@ class User(SqlALchemyBase):
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 
     jobs = orm.relationship('Jobs', back_populates='user')
+    department = orm.relationship('Department', back_populates='user_department')
 
     def __repr__(self):
         #Запрос 1

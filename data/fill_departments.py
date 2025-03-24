@@ -1,5 +1,5 @@
 from data import db_session
-from departments import Department
+from data.departments import Department
 
 def fill_departments():
     db_sess = db_session.create_session()
