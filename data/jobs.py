@@ -21,6 +21,8 @@ class Jobs(SqlALchemyBase):
     user = orm.relationship('User', back_populates='jobs')  # Удален лишний пробел
 
     def __repr__(self):
-        return (f"{self.id}, {self.team_leader}, {self.job}, "
-                f"{self.work_size}, {self.collaboration}, {self.start_date}, "
-                f"{self.end_date}, {self.is_finished}")
+       # return (f"{self.id}, {self.team_leader}, {self.job}, "
+        #        f"{self.work_size}, {self.collaboration}, {self.start_date}, "
+        #        f"{self.end_date}, {self.is_finished}")
+       # запрос 5
+        return f"<Job> {self.job} {self.work_size}"
