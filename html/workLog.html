@@ -1,0 +1,173 @@
+<html>
+<head>
+    <title>Миссия Колонизация Марса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #888;
+        }
+        .header .right {
+            font-size: 14px;
+            color: #888;
+        }
+        .content h2 {
+            font-size: 20px;
+            margin: 0 0 20px 0;
+        }
+        .action {
+            margin-bottom: 20px;
+        }
+        .action h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .table .not-finished {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .table .finished {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Миссия Колонизация Марса</h1>
+                <div class="subtitle">И на Марсе будут яблони цвести!</div>
+            </div>
+            <div class="right">Mars One</div>
+        </div>
+        <div class="content">
+            <h2>Works log</h2>
+            
+            <!-- Начало цикла для вывода действий -->
+            <!-- Предполагается, что 'actions' - это массив объектов с данными о действиях -->
+            {% for action in actions %}
+            <div class="action">
+                <h3>Action #{{ loop.index }}</h3> <!-- Номер действия (начинается с 1) -->
+                <table class="table">
+                    <tr>
+                        <th>Title of activity</th>
+                        <th>Team leader</th>
+                        <th>Duration</th>
+                        <th>List of collaborators</th>
+                        <th>Is finished</th>
+                    </tr>
+                    <tr>
+                        <td>{{ action.title }}</td> <!-- Название активности -->
+                        <td>{{ action.team_leader }}</td> <!-- Руководитель -->
+                        <td>{{ action.duration }}</td> <!-- Длительность -->
+                        <td>{{ action.collaborators }}</td> <!-- Список участников -->
+                        <!-- Статус завершения с соответствующим классом -->
+                        <td class="{% if action.is_finished %}finished{% else %}not-finished{% endif %}">
+                            {% if action.is_finished %}Is finished{% else %}Is not finished{% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+            <!-- Конец цикла -->
+            
+            <!-- Пример данных в HTML (запасной вариант, если шаблонизатор не используется) -->
+            <script>
+                // Если шаблонизатор не используется, можно заполнить данные через JavaScript
+                const actions = [
+                    {
+                        title: "Deployment of residential modules 1 and 2",
+                        team_leader: "Scott Ridley",
+                        duration: "15 hours",
+                        collaborators: "2, 3",
+                        is_finished: false
+                    },
+                    {
+                        title: "Exploration of mineral resources",
+                        team_leader: "Weir Andy",
+                        duration: "15 hours",
+                        collaborators: "4, 3",
+                        is_finished: false
+                    },
+                    {
+                        title: "Development of a management system",
+                        team_leader: "Sanders Teddy",
+                        duration: "25 hours",
+                        collaborators: "5",
+                        is_finished: false
+                    }
+                ];
+                
+                // Этот код выполнится, если шаблонизатор не используется
+                if (typeof document.querySelector('.action h3') === 'undefined') {
+                    const contentDiv = document.querySelector('.content');
+                    actions.forEach((action, index) => {
+                        const actionDiv = document.createElement('div');
+                        actionDiv.className = 'action';
+                        actionDiv.innerHTML = `
+                            <h3>Action #${index + 1}</h3>
+                            <table class="table">
+                                <tr>
+                                    <th>Title of activity</th>
+                                    <th>Team leader</th>
+                                    <th>Duration</th>
+                                    <th>List of collaborators</th>
+                                    <th>Is finished</th>
+                                </tr>
+                                <tr>
+                                    <td>${action.title}</td>
+                                    <td>${action.team_leader}</td>
+                                    <td>${action.duration}</td>
+                                    <td>${action.collaborators}</td>
+                                    <td class="${action.is_finished ? 'finished' : 'not-finished'}">
+                                        ${action.is_finished ? 'Is finished' : 'Is not finished'}
+                                    </td>
+                                </tr>
+                            </table>
+                        `;
+                        contentDiv.appendChild(actionDiv);
+                    });
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
