@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works Log</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Works Log</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.title.label }} {{ form.title(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.team_leader.label }} {{ form.team_leader(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.duration.label }} {{ form.duration(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.collaborators.label }} {{ form.collaborators(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.is_finished.label }} {{ form.is_finished(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+
+        <h2 class="mt-5">Actions</h2>
+        {% for action in actions %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ action.title }}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Team leader:</strong> {{ action.team_leader }}</li>
+                        <li class="list-group-item"><strong>Duration:</strong> {{ action.duration }}</li>
+                        <li class="list-group-item"><strong>Collaborators:</strong> {{ action.collaborators }}</li>
+                        <li class="list-group-item"><strong>Is finished:</strong> {{ action.is_finished }}</li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

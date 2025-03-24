@@ -80,8 +80,12 @@
         </div>
         <div class="content">
             <h2>Works log</h2>
+            
+            <!-- Начало цикла для вывода действий -->
+            <!-- Предполагается, что 'actions' - это массив объектов с данными о действиях -->
+            {% for action in actions %}
             <div class="action">
-                <h3>Action #1</h3>
+                <h3>Action #{{ loop.index }}</h3> <!-- Номер действия (начинается с 1) -->
                 <table class="table">
                     <tr>
                         <th>Title of activity</th>
@@ -91,52 +95,78 @@
                         <th>Is finished</th>
                     </tr>
                     <tr>
-                        <td>Deployment of residential modules 1 and 2</td>
-                        <td>Scott Ridley</td>
-                        <td>15 hours</td>
-                        <td>2, 3</td>
-                        <td class="not-finished">Is not finished</td>
+                        <td>{{ action.title }}</td> <!-- Название активности -->
+                        <td>{{ action.team_leader }}</td> <!-- Руководитель -->
+                        <td>{{ action.duration }}</td> <!-- Длительность -->
+                        <td>{{ action.collaborators }}</td> <!-- Список участников -->
+                        <!-- Статус завершения с соответствующим классом -->
+                        <td class="{% if action.is_finished %}finished{% else %}not-finished{% endif %}">
+                            {% if action.is_finished %}Is finished{% else %}Is not finished{% endif %}
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div class="action">
-                <h3>Action #2</h3>
-                <table class="table">
-                    <tr>
-                        <th>Title of activity</th>
-                        <th>Team leader</th>
-                        <th>Duration</th>
-                        <th>List of collaborators</th>
-                        <th>Is finished</th>
-                    </tr>
-                    <tr>
-                        <td>Exploration of mineral resources</td>
-                        <td>Weir Andy</td>
-                        <td>15 hours</td>
-                        <td>4, 3</td>
-                        <td class="not-finished">Is not finished</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="action">
-                <h3>Action #3</h3>
-                <table class="table">
-                    <tr>
-                        <th>Title of activity</th>
-                        <th>Team leader</th>
-                        <th>Duration</th>
-                        <th>List of collaborators</th>
-                        <th>Is finished</th>
-                    </tr>
-                    <tr>
-                        <td>Development of a management system</td>
-                        <td>Sanders Teddy</td>
-                        <td>25 hours</td>
-                        <td>5</td>
-                        <td class="not-finished">Is not finished</td>
-                    </tr>
-                </table>
-            </div>
+            {% endfor %}
+            <!-- Конец цикла -->
+            
+            <!-- Пример данных в HTML (запасной вариант, если шаблонизатор не используется) -->
+            <script>
+                // Если шаблонизатор не используется, можно заполнить данные через JavaScript
+                const actions = [
+                    {
+                        title: "Deployment of residential modules 1 and 2",
+                        team_leader: "Scott Ridley",
+                        duration: "15 hours",
+                        collaborators: "2, 3",
+                        is_finished: false
+                    },
+                    {
+                        title: "Exploration of mineral resources",
+                        team_leader: "Weir Andy",
+                        duration: "15 hours",
+                        collaborators: "4, 3",
+                        is_finished: false
+                    },
+                    {
+                        title: "Development of a management system",
+                        team_leader: "Sanders Teddy",
+                        duration: "25 hours",
+                        collaborators: "5",
+                        is_finished: false
+                    }
+                ];
+                
+                // Этот код выполнится, если шаблонизатор не используется
+                if (typeof document.querySelector('.action h3') === 'undefined') {
+                    const contentDiv = document.querySelector('.content');
+                    actions.forEach((action, index) => {
+                        const actionDiv = document.createElement('div');
+                        actionDiv.className = 'action';
+                        actionDiv.innerHTML = `
+                            <h3>Action #${index + 1}</h3>
+                            <table class="table">
+                                <tr>
+                                    <th>Title of activity</th>
+                                    <th>Team leader</th>
+                                    <th>Duration</th>
+                                    <th>List of collaborators</th>
+                                    <th>Is finished</th>
+                                </tr>
+                                <tr>
+                                    <td>${action.title}</td>
+                                    <td>${action.team_leader}</td>
+                                    <td>${action.duration}</td>
+                                    <td>${action.collaborators}</td>
+                                    <td class="${action.is_finished ? 'finished' : 'not-finished'}">
+                                        ${action.is_finished ? 'Is finished' : 'Is not finished'}
+                                    </td>
+                                </tr>
+                            </table>
+                        `;
+                        contentDiv.appendChild(actionDiv);
+                    });
+                }
+            </script>
         </div>
     </div>
 </body>
