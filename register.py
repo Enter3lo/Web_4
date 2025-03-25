@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='html')  # Указываем папку для шаблонов
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
@@ -15,12 +15,12 @@ def register():
         position = request.form['position']
         speciality = request.form['speciality']
         address = request.form['address']
-        
+
         # Здесь можно добавить логику для сохранения данных пользователя в базу данных
 
         return redirect(url_for('success'))  # Перенаправление на страницу успеха
 
-    return render_template('html/register.html')
+    return render_template('register.html')  # Теперь путь будет корректным
 
 @app.route('/success')
 def success():
