@@ -2,8 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works Log - Mars Colonization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .finished-yes {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .finished-no {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            color: #007bff;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
+    {% actions | safe %}
 </body>
 </html>
